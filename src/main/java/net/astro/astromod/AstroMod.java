@@ -1,8 +1,11 @@
 package net.astro.astromod;
 
+import net.astro.astromod.util.ClientEvents;
+import net.astro.astromod.util.Keybinding;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
@@ -15,32 +18,34 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.stream.Collectors;
-
+import net.astro.astromod.item.ModItems;
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("astromod")
+@Mod.EventBusSubscriber(modid = AstroMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class AstroMod
 {
+
     // Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
-
+    public static final String MOD_ID = "astromod";
     public AstroMod() {
-        // Register the setup method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        // Register the enqueueIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
-        // Register the processIMC method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
-        // Register the doClientStuff method for modloading
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        // Register ourselves for server and other game events we are interested in
+        ModItems.register(modEventBus);
+
+        modEventBus.addListener(this::setup);
+
         MinecraftForge.EVENT_BUS.register(this);
+
+
+        Keybinding.register();
     }
 
-    private void setup(final FMLCommonSetupEvent event)
+    private void setup(final FMLClientSetupEvent event)
     {
 
     }
+
 
     private void doClientStuff(final FMLClientSetupEvent event) {
         // do something that can only be done on the client
