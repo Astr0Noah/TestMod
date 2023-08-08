@@ -1,6 +1,7 @@
 {
   "item.astromod.sosshi": "Sosshi Village's Stone",
   "key.astromod.lighting": "Lightning Key",
-  "key.category.astromod": "AstroMod"
+  "key.category.astromod": "AstroMod",
+  "itemGroup.AstroModTab": "Astro Mod"
 
 }

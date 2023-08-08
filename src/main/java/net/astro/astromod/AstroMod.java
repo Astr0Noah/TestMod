@@ -3,6 +3,7 @@ package net.astro.astromod;
 import net.astro.astromod.util.ClientEvents;
 import net.astro.astromod.util.Keybinding;
 import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,6 +29,7 @@ public class AstroMod
 {
 
     // Directly reference a log4j logger.
+
     private static final Logger LOGGER = LogManager.getLogger();
     public static final String MOD_ID = "astromod";
     public AstroMod() {
@@ -36,6 +40,8 @@ public class AstroMod
         modEventBus.addListener(this::setup);
 
         MinecraftForge.EVENT_BUS.register(this);
+        // Initialize the network channel
+
 
 
         Keybinding.register();
