@@ -1,7 +1,10 @@
 package net.astro.astromod;
 
+
+import net.astro.astromod.network.SyncHandler;
 import net.astro.astromod.util.ClientEvents;
-import net.astro.astromod.util.Keybinding;
+
+import net.astro.astromod.util.KeybindsInit;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -37,20 +40,27 @@ public class AstroMod
 
         ModItems.register(modEventBus);
 
-        modEventBus.addListener(this::setup);
+        modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
         // Initialize the network channel
 
 
 
-        Keybinding.register();
-    }
 
-    private void setup(final FMLClientSetupEvent event)
-    {
 
     }
+
+   public void commonSetup(final FMLCommonSetupEvent event){
+        SyncHandler.init();
+
+
+
+   }
+   @SubscribeEvent
+   public static void clientSetup(FMLClientSetupEvent event){
+        KeybindsInit.register(event);
+   }
 
 
     private void doClientStuff(final FMLClientSetupEvent event) {
