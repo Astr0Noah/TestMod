@@ -1,6 +1,7 @@
 package net.astro.astromod;
 
 
+import net.astro.astromod.blocks.BlockInit;
 import net.astro.astromod.network.SyncHandler;
 import net.astro.astromod.util.ClientEvents;
 
@@ -39,6 +40,7 @@ public class AstroMod
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
+        BlockInit.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
