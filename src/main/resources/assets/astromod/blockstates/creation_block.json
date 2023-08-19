@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "": {"model": "astromod:block/creation_block"}
+
+  }
+}
