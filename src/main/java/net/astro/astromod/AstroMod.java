@@ -3,6 +3,7 @@ package net.astro.astromod;
 
 import net.astro.astromod.blocks.BlockInit;
 import net.astro.astromod.network.SyncHandler;
+import net.astro.astromod.sound.ModSounds;
 import net.astro.astromod.util.ClientEvents;
 
 import net.astro.astromod.util.KeybindsInit;
@@ -41,6 +42,7 @@ public class AstroMod
 
         ModItems.register(modEventBus);
         BlockInit.register(modEventBus);
+        ModSounds.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 

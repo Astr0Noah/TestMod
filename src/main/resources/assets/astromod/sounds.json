@@ -1,0 +1,8 @@
+{
+  "immobile":{
+    "subtitle": "sounds.astromod.immobile",
+    "sounds": [
+      "astromod:gong"
+    ]
+  }
+}

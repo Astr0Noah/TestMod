@@ -3,7 +3,11 @@ package net.astro.astromod.util;
 import java.util.UUID;
 
 import net.astro.astromod.AstroMod;
+import net.astro.astromod.network.EffectInputMessage;
+import net.astro.astromod.network.InputMessage;
+import net.astro.astromod.network.SyncHandler;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.attributes.ModifiableAttributeInstance;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
@@ -29,14 +33,15 @@ public class ClientEvents {
             // Now you can use the 'world' variable to interact with the game world
         }
     }
+
+
+
     private static void onInput(Minecraft mc, int key, int action){
         if(KeybindsInit.lightningKey.consumeClick()){
-            PlayerEntity player = Minecraft.getInstance().player;
+            SyncHandler.CHANNEL.sendToServer(new EffectInputMessage());
 
-            if (player != null) {
 
-                Minecraft.getInstance().player.displayClientMessage(new StringTextComponent("R key was pressed"), true);
-            }
+
         }
 
     }

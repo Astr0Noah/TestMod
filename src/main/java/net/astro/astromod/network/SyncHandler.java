@@ -16,6 +16,7 @@ public class SyncHandler {
             version -> version.equals(NETWORK_VERSION), version -> version.equals(NETWORK_VERSION));
     public static void init(){
         CHANNEL.registerMessage(0, InputMessage.class, InputMessage::encode, InputMessage::decode,InputMessage::handle );
+        CHANNEL.registerMessage(1, EffectInputMessage.class,EffectInputMessage::encode, EffectInputMessage::decode, EffectInputMessage::handle );
     }
 
 }
